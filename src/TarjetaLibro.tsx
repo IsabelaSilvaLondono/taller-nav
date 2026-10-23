@@ -1,41 +1,39 @@
+import { Corazon } from '@/Corazon';
 import { Texto, Vidrio } from '@/Glass';
+import { Portada } from '@/Portada';
 import { useBiblioteca } from '@/context/Biblioteca';
 import { DETALLES } from '@/data/detalles';
-import { LIBROS } from '@/data/libros';
-import { C, T } from '@/theme';
-import { Ionicons } from '@expo/vector-icons';
+import { T } from '@/theme';
 import { Link } from 'expo-router';
 import { Pressable, View } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
+import { LIBROS } from './data/libros';
 
-export function TarjetaLibro({ libro }: { libro: (typeof LIBROS)[number] }) {
+export function TarjetaLibro({ libro, indice = 0 }: {  libro: (typeof LIBROS)[number]; indice?: number }) {
     const { esFavorito, alternarFavorito, ajustes } = useBiblioteca();
-    const fav = esFavorito(libro.id);
 
     return (
-    <Link href={{ pathname: '/libro/[id]', params: { id: libro.id } }} asChild>
-        <Pressable style={({ pressed }) => ({ opacity: pressed ? 0.6 : 1 })}>
-        <Vidrio style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-            <View style={{ flex: 1, gap: 4 }}>
-            <Texto style={T.boton}>{libro.titulo}</Texto>
-            <Texto style={T.suave}>
-                {libro.autor}
-                {ajustes.mostrarAnio ? ` · ${libro.anio}` : ''}
-            </Texto>
-            {ajustes.mostrarSinopsis && (
-                <Texto style={T.suave} numberOfLines={2}>
-                    {DETALLES[libro.id]?.sinopsis}
+        <Animated.View entering={FadeInDown.delay(Math.min(indice, 6) * 70).springify()}>
+        <Link href={{ pathname: '/libro/[id]', params: { id: libro.id } }} asChild>
+            <Pressable style={({ pressed }) => ({ opacity: pressed ? 0.75 : 1 })}>
+            <Vidrio style={{ flexDirection: 'row', alignItems: 'center', gap: 14, padding: 12 }}>
+                <Portada libro={libro} ancho={64} mini />
+                <View style={{ flex: 1, gap: 3 }}>
+                <Texto style={T.boton} numberOfLines={2}>{libro.titulo}</Texto>
+                <Texto style={T.suave}>
+                    {libro.autor}
+                    {ajustes.mostrarAnio ? ` · ${libro.anio}` : ''}
                 </Texto>
-            )}
-            </View>
-            <Pressable hitSlop={12} onPress={() => alternarFavorito(libro.id)}>
-            <Ionicons
-                name={fav ? 'heart' : 'heart-outline'}
-                size={24}
-                color={fav ? C.acento : (C.suave as string)}
-            />
+                {ajustes.mostrarSinopsis && (
+                    <Texto style={[T.suave, { fontSize: 15 }]} numberOfLines={2}>
+                    {DETALLES[libro.id]?.sinopsis}
+                    </Texto>
+                )}
+                </View>
+                <Corazon activo={esFavorito(libro.id)} onPress={() => alternarFavorito(libro.id)} />
+            </Vidrio>
             </Pressable>
-        </Vidrio>
-        </Pressable>
-    </Link>
+        </Link>
+        </Animated.View>
     );
 }

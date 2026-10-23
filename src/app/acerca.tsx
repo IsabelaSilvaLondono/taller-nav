@@ -7,8 +7,8 @@ export default function Acerca() {
     const router = useRouter();
     return (
         <Fondo>
-        <View style={{ padding: 24, gap: 14 }}>
-            <Vidrio style={{ gap: 8 }}>
+        <View style={{ padding: 24, gap: 16 }}>
+            <Vidrio style={{ gap: 10, padding: 24 }}>
             <Texto style={T.titulo}>Biblioteca</Texto>
             <Texto style={T.suave}>Versión 1.0 · Taller de navegación con Expo Router.</Texto>
             <Texto style={T.suave}>

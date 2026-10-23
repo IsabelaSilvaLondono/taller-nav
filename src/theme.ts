@@ -1,24 +1,32 @@
 import { TextStyle } from 'react-native';
 
 export const C = {
-    fondo: '#ECEFF1',
-    tinta: '#1B1E23',
-    suave: '#6B7580',
-    acento: '#4F6272',
+    fondo: '#EFEBF5',
+    tinta: '#241F2E',
+    suave: '#756F82',
+    acento: '#6B5B8A',
+    acentoOscuro: '#53446F',
     peligro: '#9A4A4A',
-    vidrio: 'rgba(255,255,255,0.45)',
-    borde: 'rgba(255,255,255,0.75)',
-    blob1: '#C9D6E2',
-    blob2: '#E2D6E6',
-    blob3: '#D3E4DA',
+    vidrio: 'rgba(255,255,255,0.5)',
+    borde: 'rgba(255,255,255,0.85)',
+    blob1: '#D8CCEA',
+    blob2: '#F0D9E4',
+    blob3: '#CFE2DD',
+};
+
+export const F = {
+    normal: 'CormorantGaramond_400Regular_Italic',
+    media: 'CormorantGaramond_500Medium_Italic',
+    fuerte: 'CormorantGaramond_600SemiBold_Italic',
 };
 
 export const T = {
-    cuerpo: { fontStyle: 'italic', fontSize: 16, color: C.tinta },
-    suave: { fontStyle: 'italic', fontSize: 14, color: C.suave },
-    titulo: { fontStyle: 'italic', fontSize: 28, fontWeight: '600', color: C.tinta },
-    marca: { fontStyle: 'italic', fontSize: 34, fontWeight: '300', letterSpacing: 1, color: C.tinta },
-    boton: { fontStyle: 'italic', fontSize: 16, fontWeight: '600', color: C.tinta },
-    header: { fontStyle: 'italic', fontSize: 18, fontWeight: '600', color: C.tinta },
-    error: { fontStyle: 'italic', fontSize: 14, color: C.peligro },
+    cuerpo: { fontFamily: F.normal, fontSize: 19, color: C.tinta },
+    suave: { fontFamily: F.normal, fontSize: 17, color: C.suave },
+    titulo: { fontFamily: F.fuerte, fontSize: 34, color: C.tinta },
+    marca: { fontFamily: F.media, fontSize: 54, letterSpacing: 1, color: C.tinta },
+    boton: { fontFamily: F.fuerte, fontSize: 19, color: C.tinta },
+    header: { fontFamily: F.fuerte, fontSize: 22, color: C.tinta },
+    seccion: { fontFamily: F.fuerte, fontSize: 24, color: C.tinta },
+    error: { fontFamily: F.normal, fontSize: 16, color: C.peligro },
 } satisfies Record<string, TextStyle>;

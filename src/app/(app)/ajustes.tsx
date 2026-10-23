@@ -7,36 +7,36 @@ export default function Ajustes() {
     const { ajustes, cambiarAjuste } = useBiblioteca();
 
     const fila = (
-    titulo: string,
+        titulo: string,
     detalle: string,
     clave: 'mostrarSinopsis' | 'mostrarAnio',
     ) => (
-    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
         <View style={{ flex: 1, gap: 2 }}>
-        <Texto style={T.boton}>{titulo}</Texto>
-        <Texto style={T.suave}>{detalle}</Texto>
+            <Texto style={T.boton}>{titulo}</Texto>
+            <Texto style={[T.suave, { fontSize: 15 }]}>{detalle}</Texto>
         </View>
         <Switch
         value={ajustes[clave]}
         onValueChange={(v) => cambiarAjuste(clave, v)}
-        trackColor={{ false: '#C9CED3', true: C.acento }}
+        trackColor={{ false: '#CFCAD8', true: C.acento }}
         thumbColor="#FFFFFF"
         />
-    </View>
+        </View>
     );
 
     return (
     <Fondo>
-        <View style={{ padding: 24, gap: 14 }}>
-        <Vidrio style={{ gap: 6 }}>
+        <View style={{ padding: 24, gap: 16 }}>
+            <View style={{ gap: 2 }}>
             <Texto style={T.titulo}>Ajustes</Texto>
             <Texto style={T.suave}>Personaliza cómo se ve tu lista de libros.</Texto>
-        </Vidrio>
-        <Vidrio style={{ gap: 18 }}>
+            </View>
+            <Vidrio style={{ gap: 20, padding: 20 }}>
             {fila('Mostrar sinopsis', 'Un resumen breve en cada tarjeta.', 'mostrarSinopsis')}
             {fila('Mostrar año', 'El año de publicación junto al autor.', 'mostrarAnio')}
-        </Vidrio>
+            </Vidrio>
         </View>
-    </Fondo>
+        </Fondo>
     );
 }

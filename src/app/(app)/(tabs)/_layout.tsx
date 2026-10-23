@@ -1,55 +1,69 @@
-import { C } from '@/theme';
+import { C, F } from '@/theme';
 import { Ionicons } from '@expo/vector-icons';
 import { BlurView } from 'expo-blur';
 import { Tabs } from 'expo-router';
 import { StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function TabsLayout() {
+    const insets = useSafeAreaInsets();
+
     return (
-    <Tabs
+        <Tabs
         screenOptions={{
-        headerShown: false, // un solo header: el del Drawer
-        tabBarActiveTintColor: C.tinta,
-        tabBarInactiveTintColor: C.suave,
-        tabBarLabelStyle: { fontStyle: 'italic' },
-        tabBarStyle: {
+            headerShown: false, // un solo header: el del Drawer
+            tabBarActiveTintColor: C.acento,
+            tabBarInactiveTintColor: C.suave,
+            tabBarLabelStyle: { fontFamily: F.fuerte, fontSize: 14 },
+            tabBarStyle: {
             position: 'absolute',
-            backgroundColor: 'transparent',
-            borderTopWidth: 0,
+            left: 20,
+            right: 20,
+            bottom: insets.bottom + 12,
+            height: 68,
+            paddingTop: 6,
+            paddingBottom: 8,
+            borderRadius: 34,
+            overflow: 'hidden',
+            borderWidth: 1,
+            borderTopWidth: 1,
+            borderColor: C.borde,
+            borderTopColor: C.borde,
+            backgroundColor: 'rgba(255,255,255,0.6)',
             elevation: 0,
             },
-        tabBarBackground: () => (
-            <BlurView intensity={50} tint="light" style={StyleSheet.absoluteFill} />
-        ),
+            tabBarBackground: () => (
+            <BlurView intensity={60} tint="light" style={StyleSheet.absoluteFill} />
+            ),
         }}
         >
         <Tabs.Screen
-        name="index"
-        options={{
+            name="index"
+            options={{
             title: 'Inicio',
             tabBarIcon: ({ color, size, focused }) => (
-            <Ionicons name={focused ? 'home' : 'home-outline'} color={color as string} size={size} />
+                <Ionicons name={focused ? 'home' : 'home-outline'} color={color as string} size={size} />
             ),
             }}
         />
         <Tabs.Screen
-        name="favoritos"
-        options={{
+            name="favoritos"
+            options={{
             title: 'Favoritos',
             tabBarIcon: ({ color, size, focused }) => (
-            <Ionicons name={focused ? 'heart' : 'heart-outline'} color={color as string} size={size} />
+                <Ionicons name={focused ? 'heart' : 'heart-outline'} color={color as string} size={size} />
             ),
             }}
         />
         <Tabs.Screen
-        name="perfil"
-        options={{
+            name="perfil"
+            options={{
             title: 'Perfil',
             tabBarIcon: ({ color, size, focused }) => (
                 <Ionicons name={focused ? 'person' : 'person-outline'} color={color as string} size={size} />
             ),
-        }}
+            }}
         />
-    </Tabs>
+        </Tabs>
     );
 }
