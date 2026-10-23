@@ -1,14 +1,10 @@
-// Utilización de gllass liquid, creditos a claude por la ayuda a tener diseño bonito en este proyecto/taller
-
 import { C, T } from '@/theme';
+import { Ionicons } from '@expo/vector-icons';
 import { BlurView } from 'expo-blur';
 import { ReactNode } from 'react';
-import { Pressable, StyleProp, StyleSheet, Text, TextProps, View, ViewStyle, } from 'react-native';
+import { Pressable, StyleProp, StyleSheet, Text, TextInput, TextInputProps, TextProps, View, ViewStyle, } from 'react-native';
 
-/** Fondo minimalista: manchas suaves difuminadas sobre gris perla.*/
-// Se utilizo la logica de hijo para que se pueda poner cualquier cosa dentro del fondo, 
-// como un contenedor de libros o cualquier otra cosa que se quiera poner en el fondo  y ysha jsjsj.
-
+/** Fondo minimalista: manchas suaves difuminadas sobre gris perla. */
 export function Fondo({ children }: { children: ReactNode }) {
     return (
     <View style={{ flex: 1, backgroundColor: C.fondo, overflow: 'hidden' }}>
@@ -35,18 +31,38 @@ export function Texto({ style, ...props }: TextProps) {
     return <Text {...props} style={[T.cuerpo, style]} />;
 }
 
-export function Boton({ titulo, onPress }: { titulo: string; onPress: () => void }) {
+export function Boton({
+    titulo, onPress, icono,
+}: {
+    titulo: string;
+    onPress: () => void;
+    icono?: React.ComponentProps<typeof Ionicons>['name'];
+}) {
     return (
     <Pressable onPress={onPress} style={({ pressed }) => ({ opacity: pressed ? 0.6 : 1 })}>
-        <Vidrio style={{ alignItems: 'center', paddingVertical: 14 }}>
+        <Vidrio style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 8, paddingVertical: 14 }}>
+        {icono && <Ionicons name={icono} size={18} color={C.tinta} />}
         <Text style={T.boton}>{titulo}</Text>
         </Vidrio>
     </Pressable>
     );
 }
 
+/** Campo de texto con marco de vidrio. */
+export function Campo(props: TextInputProps) {
+    return (
+    <Vidrio style={{ paddingVertical: 2, paddingHorizontal: 16, borderRadius: 18 }}>
+        <TextInput
+        placeholderTextColor={C.suave}
+        {...props}
+        style={[T.cuerpo, { height: 46 }, props.style]}
+        />
+    </Vidrio>
+    );
+}
+
 /** Título de header en cursiva (headerTitleStyle no soporta fontStyle). */
-export const tituloHeader = ({ children }: { children: string }) => (
+    export const tituloHeader = ({ children }: { children: string }) => (
     <Text style={T.header}>{children}</Text>
 );
 

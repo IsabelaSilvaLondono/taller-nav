@@ -8,7 +8,7 @@ export default function TabsLayout() {
     return (
     <Tabs
         screenOptions={{
-        headerShown: false,
+        headerShown: false, // un solo header: el del Drawer
         tabBarActiveTintColor: C.tinta,
         tabBarInactiveTintColor: C.suave,
         tabBarLabelStyle: { fontStyle: 'italic' },
@@ -17,12 +17,12 @@ export default function TabsLayout() {
             backgroundColor: 'transparent',
             borderTopWidth: 0,
             elevation: 0,
-        },
+            },
         tabBarBackground: () => (
             <BlurView intensity={50} tint="light" style={StyleSheet.absoluteFill} />
         ),
-        }}    
-    >
+        }}
+        >
         <Tabs.Screen
         name="index"
         options={{
@@ -30,7 +30,7 @@ export default function TabsLayout() {
             tabBarIcon: ({ color, size, focused }) => (
             <Ionicons name={focused ? 'home' : 'home-outline'} color={color as string} size={size} />
             ),
-        }}
+            }}
         />
         <Tabs.Screen
         name="favoritos"
@@ -39,14 +39,14 @@ export default function TabsLayout() {
             tabBarIcon: ({ color, size, focused }) => (
             <Ionicons name={focused ? 'heart' : 'heart-outline'} color={color as string} size={size} />
             ),
-        }}
+            }}
         />
         <Tabs.Screen
         name="perfil"
         options={{
             title: 'Perfil',
             tabBarIcon: ({ color, size, focused }) => (
-            <Ionicons name={focused ? 'person' : 'person-outline'} color={color as string} size={size} />
+                <Ionicons name={focused ? 'person' : 'person-outline'} color={color as string} size={size} />
             ),
         }}
         />

@@ -7,7 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 export default function AuthLayout() {
     const insets = useSafeAreaInsets();
     return (
-    <Fondo>
+        <Fondo>
         <View style={{ paddingTop: insets.top + 48, alignItems: 'center' }}>
         <Texto style={T.marca}>Biblioteca</Texto>
         </View>

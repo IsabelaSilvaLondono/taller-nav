@@ -1,11 +1,11 @@
 import { TextStyle } from 'react-native';
 
-// Utilidades de estilo para la aplicación del taller, utilando la hermosa italica y colores aburridosxd
 export const C = {
     fondo: '#ECEFF1',
     tinta: '#1B1E23',
     suave: '#6B7580',
     acento: '#4F6272',
+    peligro: '#9A4A4A',
     vidrio: 'rgba(255,255,255,0.45)',
     borde: 'rgba(255,255,255,0.75)',
     blob1: '#C9D6E2',
@@ -20,4 +20,5 @@ export const T = {
     marca: { fontStyle: 'italic', fontSize: 34, fontWeight: '300', letterSpacing: 1, color: C.tinta },
     boton: { fontStyle: 'italic', fontSize: 16, fontWeight: '600', color: C.tinta },
     header: { fontStyle: 'italic', fontSize: 18, fontWeight: '600', color: C.tinta },
+    error: { fontStyle: 'italic', fontSize: 14, color: C.peligro },
 } satisfies Record<string, TextStyle>;
